@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>StayBridge Residency | Calicut</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#FBF8F4;
+      --panel:#FFFFFF;
+      --accent:#b7862a;
+      --muted:#7a7a7a;
+      --deep:#062033;
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Montserrat,system-ui,Arial,sans-serif;background:var(--bg);color:var(--deep);-webkit-font-smoothing:antialiased}
+    header{
+      background:linear-gradient(90deg, rgba(6,32,51,0.98), rgba(6,32,51,0.92));
+      color:var(--panel);
+      padding:20px 22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      position:sticky;
+      top:0;
+      z-index:9999; /* ensure header stays on top and links are clickable */
+    }
+    header .brand{display:flex;gap:14px;align-items:center}
+    header img.logo{height:56px;border-radius:10px;object-fit:cover;box-shadow:0 6px 20px rgba(0,0,0,0.25)}
+    header h1{font-family:'Playfair Display',serif;margin:0;font-size:1.15rem;letter-spacing:1px}
+    nav{display:flex;gap:12px}
+    nav a{color:rgba(255,255,255,0.95);text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:600;opacity:.95;cursor:pointer}
+    nav a.active, nav a:hover{background:rgba(255,255,255,0.08)}
+    .hero{max-width:var(--max);margin:30px auto;display:grid;gap:22px;padding:0 20px}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.78), rgba(255,255,255,0.9));border-radius:18px;overflow:hidden;display:flex;flex-direction:row;align-items:stretch;box-shadow:0 20px 50px rgba(10,20,30,0.12)}
+    .hero-media{min-width:420px;background-image: url('building.jpg');background-size:cover;background-position:center;filter:brightness(.9);pointer-events:none}
+    .hero-body{padding:32px;flex:1}
+    .kicker{color:var(--muted);font-weight:700;letter-spacing:2px;margin-bottom:8px}
+    .hero-body h2{font-family:'Playfair Display',serif;margin:0 0 8px;font-size:2rem;color:var(--deep)}
+    .hero-body p{color:var(--muted);line-height:1.6;margin:0 0 18px}
+    .cta-row{display:flex;gap:12px;align-items:center}
+    .btn{display:inline-block;padding:11px 18px;border-radius:999px;background:var(--deep);color:#fff;text-decoration:none;font-weight:700}
+    .btn.secondary{background:transparent;color:var(--deep);border:1.5px solid rgba(6,32,51,0.06)}
+    main{max-width:var(--max);margin:28px auto 80px;padding:0 20px;display:grid;gap:24px}
+    section{background:var(--panel);padding:22px;border-radius:12px;box-shadow:0 12px 30px rgba(12,20,30,0.04)}
+    section h2{font-family:'Playfair Display',serif;margin:0 0 8px;font-size:1.5rem;color:var(--deep)}
+    .muted{color:var(--muted);font-size:0.98rem}
+    .rooms{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:14px}
+    .room{border-radius:12px;overflow:hidden;background:linear-gradient(180deg,#fff,#fcfcfc);border:1px solid rgba(12,20,30,0.04);display:flex;flex-direction:column}
+    .room img{width:100%;height:160px;object-fit:cover}
+    .room-body{padding:14px 16px;flex:1;display:flex;flex-direction:column;gap:8px}
+    .room h3{margin:0;font-size:1.05rem;font-weight:700}
+    .price{color:var(--accent);font-weight:800}
+    .room p{margin:0;color:var(--muted);font-size:0.95rem}
+    .cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .features-list{columns:2;list-style:none;padding:0;margin:0;color:var(--muted);gap:6px}
+    .features-list li{margin-bottom:8px;padding-left:18px;position:relative}
+    .features-list li:before{content:'•';position:absolute;left:0;color:var(--accent)}
+    .gallery{display:flex;gap:12px;flex-wrap:wrap}
+    .gallery img{width:100%;max-width:320px;border-radius:10px;object-fit:cover;box-shadow:0 10px 30px rgba(10,20,30,0.06)}
+    .thumbs{display:flex;gap:8px;margin-top:10px}
+    .thumbs img{width:120px;height:80px;object-fit:cover;border-radius:8px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+    .booking-grid{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start}
+    form label{display:block;font-weight:700;margin-bottom:6px;font-size:0.95rem;color:var(--deep)}
+    input,select,textarea,button{font-family:inherit;border-radius:10px;border:1px solid rgba(10,20,30,0.06);padding:10px 12px}
+    input,select,textarea{width:100%;background:#fff;color:var(--deep)}
+    .book-panel{padding:18px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfaf9);border:1px solid rgba(10,20,30,0.03)}
+    .book-note{font-size:0.9rem;color:var(--muted);margin-top:8px}
+    .note{margin-top:8px;padding:12px;border-left:4px solid var(--accent);background:#fffef8;border-radius:6px;color:var(--muted);font-weight:600}
+    footer{max-width:var(--max);margin:28px auto 48px;padding:18px 20px;text-align:center;color:var(--muted)}
+    @media(max-width:900px){
+      .hero-card{flex-direction:column}
+      .hero-media{min-height:220px;width:100%}
+      .cols{grid-template-columns:1fr}
+      .booking-grid{grid-template-columns:1fr}
+      .features-list{columns:1}
+      .thumbs img{width:100px;height:70px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img src="logo.jpg" alt="StayBridge Residency logo" class="logo" onerror="this.style.display='none'"/>
+      <div>
+        <h1>StayBridge Residency</h1>
+        <div class="muted" style="font-size:0.85rem">Calicut · Refined stays</div>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#welcome" class="active">Home</a>
+      <a href="#rooms">Rooms</a>
+      <a href="#amenities">Amenities</a>
+      <a href="#booking">Booking</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="hero-card" role="banner">
+      <div class="hero-media" aria-hidden="true"></div>
+      <div class="hero-body">
+        <div class="kicker">Luxury • Comfort • Convenience</div>
+        <h2>Modern suites in the heart of Kozhikode</h2>
+        <p class="muted">Elegantly furnished Classic rooms and spacious 1/2 BHK suites with full kitchens, high-speed Wi‑Fi, curated amenities and discreet 24/7 service.</p>
+        <div class="cta-row">
+          <a class="btn" href="#booking">Reserve Now</a>
+          <a class="btn secondary" href="https://wa.me/919072927162" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section id="welcome" class="active">
+      <h2>Welcome</h2>
+      <p class="muted">A calm, refined stay designed for travelers who expect comfort and attention to detail. Located minutes from MIMS Hospital and key transport hubs.</p>
+      <div class="note">All rooms are service rooms.</div>
+    </section>
+
+    <section id="rooms">
+      <h2>Rooms & Suites</h2>
+      <div class="rooms" aria-live="polite">
+        <article class="room">
+          <img class="previewable" src="classic.jpg" alt="Classic room main" onerror="this.style.display='none'"/>
+          <div class="room-body">
+            <h3>Classic Room</h3>
+            <div class="price">₹2,500 / night</div>
+            <p>Cozy, well-appointed room with premium bedding, smart TV and essential kitchenette.</p>
+            <div class="thumbs" aria-hidden="false">
+              <img class="previewable" src="classic2.jpg" alt="Classic room extra" onerror="this.style.display='none'"/>
+            </div>
+          </div>
+        </article>
+
+        <article class="room">
+          <img class="previewable" src="1bhk1.jpg" alt="1BHK suite main" onerror="this.style.display='none'"/>
+          <div class="room-body">
+            <h3>1BHK Suite</h3>
+            <div class="price">₹3,500 / night</div>
+            <p>Separate living area and fully equipped kitchen — ideal for longer stays.</p>
+            <div class="thumbs">
+              <img class="previewable" src="1bhk2.jpg" alt="1BHK view 2" onerror="this.style.display='none'"/>
+              <img class="previewable" src="1bhk3.jpg" alt="1BHK view 3" onerror="this.style.display='none'"/>
+              <img class="previewable" src="1bhk4.jpg" alt="1BHK view 4" onerror="this.style.display='none'"/>
+            </div>
+          </div>
+        </article>
+
+        <article class="room">
+          <img class="previewable" src="image1.jpg" alt="2BHK suite main" onerror="this.style.display='none'"/>
+          <div class="room-body">
+            <h3>2BHK Suite</h3>
+            <div class="price">₹5,000 / night</div>
+            <p>Spacious family suite with two bedrooms, ample living space and refined finishes.</p>
+            <div class="thumbs">
+              <img class="previewable" src="image2.jpg" alt="2BHK view 2" onerror="this.style.display='none'"/>
+              <img class="previewable" src="image3.jpg" alt="2BHK view 3" onerror="this.style.display='none'"/>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="amenities">
+      <div class="cols">
+        <div>
+          <h2>Amenities</h2>
+          <ul class="features-list">
+            <li>Fully equipped kitchen in every suite</li>
+            <li>High-speed Wi‑Fi & Smart TV</li>
+            <li>Complimentary premium toiletries</li>
+            <li>Fridge available in rooms</li>
+            <li>Washing machine available</li>
+            <li>Secure parking</li>
+            <li>24/7 guest support</li>
+            <li>Flexible check-in/out</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2>Gallery</h2>
+          <div class="gallery">
+            <img class="previewable" src="lobby1.jpg" alt="lobby 1" onerror="this.style.display='none'"/>
+            <img class="previewable" src="lobby2.jpg" alt="lobby 2" onerror="this.style.display='none'"/>
+            <img class="previewable" src="lobby3.jpg" alt="lobby 3" onerror="this.style.display='none'"/>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="booking">
+      <h2>Booking</h2>
+      <div class="booking-grid">
+        <form id="bookingForm" class="book-panel" onsubmit="submitBooking(event)" aria-label="Booking form">
+          <label>Name<input type="text" name="name" required></label>
+          <label>Phone<input type="tel" name="phone" required></label>
+          <label>Room
+            <select name="roomType" required>
+              <option value="">Choose</option>
+              <option>Classic Room</option>
+              <option>1BHK Suite</option>
+              <option>2BHK Suite</option>
+            </select>
+          </label>
+          <label>Check-in<input type="date" name="checkIn" required></label>
+          <label>Check-out<input type="date" name="checkOut" required></label>
+          <button type="submit" class="btn" style="margin-top:6px">Send via WhatsApp</button>
+          <div class="book-note muted">We will respond within a few minutes via WhatsApp. Or call <a href="tel:9072927162">90729 27162</a></div>
+        </form>
+
+        <aside class="book-panel">
+          <h3 style="margin-top:0">Stay Details</h3>
+          <p class="muted">Check-in from 12:00 PM · Check-out by 11:00 AM · Early check-in subject to availability.</p>
+          <div style="margin-top:12px">
+            <strong>Address</strong>
+            <div class="muted">35/557 A, Mini Bypass Road, Near MIMS Hospital, Kozhikode, Kerala 673016</div>
+            <div style="margin-top:10px"><a href="https://wa.me/919072927162" class="btn" target="_blank" rel="noopener">Chat on WhatsApp</a></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p class="muted">For corporate bookings or long-term stays, contact our reservations team.</p>
+      <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:12px">
+        <div style="flex:1;min-width:220px" class="book-panel">
+          <strong>Phone</strong>
+          <div class="muted"><a href="tel:9072927162">90729 27162</a></div>
+        </div>
+        <div style="flex:1;min-width:220px" class="book-panel">
+          <strong>Email</strong>
+          <div class="muted"><a href="mailto:staybridgecalicut@gmail.com">staybridgecalicut@gmail.com</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 StayBridge Residency — Refined stays in Kozhikode · staybridgecalicut@gmail.com
+  </footer>
+
+  <script>
+    function showSection(id){
+      document.querySelectorAll('main section').forEach(s=>s.classList.remove('active'));
+      const el = document.getElementById(id);
+      if(el) el.classList.add('active');
+      document.querySelectorAll('nav a').forEach(a=>{
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+      if(history.replaceState) history.replaceState(null,'','#'+id);
+    }
+
+    document.addEventListener('DOMContentLoaded', ()=>{
+      // navigation
+      document.querySelectorAll('nav a').forEach(a=>{
+        a.addEventListener('click', e=>{
+          e.preventDefault();
+          const id = a.getAttribute('href').replace('#','') || 'welcome';
+          showSection(id);
+        });
+      });
+      const id = (location.hash || '#welcome').replace('#','');
+      showSection(id);
+
+      // thumbnail swap for each room (click swaps main image)
+      document.querySelectorAll('.room').forEach(room=>{
+        const mainImg = room.querySelector('img.previewable');
+        const thumbs = room.querySelectorAll('.thumbs img.previewable');
+        if(mainImg && thumbs.length){
+          thumbs.forEach(t=>{
+            t.addEventListener('click', ()=>{
+              const prev = mainImg.src;
+              mainImg.src = t.src;
+              t.src = prev;
+            });
+          });
+        }
+      });
+
+      // preview behavior: open image in new tab when clicked (gallery & thumbs)
+      document.querySelectorAll('img.previewable').forEach(img=>{
+        img.addEventListener('click', (e)=>{
+          if (!img.src) return;
+          window.open(img.src, '_blank', 'noopener');
+        });
+      });
+    });
+
+    function submitBooking(e){
+      e.preventDefault();
+      const f = e.target;
+      const name = (f.name.value||'').trim();
+      const phone = (f.phone.value||'').trim();
+      const room = (f.roomType.value||'').trim();
+      const checkIn = (f.checkIn.value||'').trim();
+      const checkOut = (f.checkOut.value||'').trim();
+      if(!name || !phone){
+        alert('Please enter name and phone.');
+        return;
+      }
+      const msg = [
+        'StayBridge Residency — Booking enquiry',
+        'Name: '+name,
+        'Phone: '+phone,
+        'Room: '+room,
+        'Check-in: '+checkIn,
+        'Check-out: '+checkOut
+      ].join('\n');
+      const wa = '919072927162';
+      const url = 'https://wa.me/' + wa + '?text=' + encodeURIComponent(msg);
+      window.open(url,'_blank','noopener');
+      f.reset();
+    }
+  </script>
+</body>
+</html>
