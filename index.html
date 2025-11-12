@@ -29,7 +29,7 @@
       gap:18px;
       position:sticky;
       top:0;
-      z-index:9999; /* ensure header stays on top and links are clickable */
+      z-index:9999;
     }
     header .brand{display:flex;gap:14px;align-items:center}
     header img.logo{height:56px;border-radius:10px;object-fit:cover;box-shadow:0 6px 20px rgba(0,0,0,0.25)}
@@ -134,9 +134,7 @@
             <h3>Classic Room</h3>
             <div class="price">₹2,500 / night</div>
             <p>Cozy, well-appointed room with premium bedding, smart TV and essential kitchenette.</p>
-            <div class="thumbs" aria-hidden="false">
-              <img class="previewable" src="classic2.jpg" alt="Classic room extra" onerror="this.style.display='none'"/>
-            </div>
+            <!-- classic: only classic.jpg (no extra thumbs) -->
           </div>
         </article>
 
@@ -148,8 +146,6 @@
             <p>Separate living area and fully equipped kitchen — ideal for longer stays.</p>
             <div class="thumbs">
               <img class="previewable" src="1bhk2.jpg" alt="1BHK view 2" onerror="this.style.display='none'"/>
-              <img class="previewable" src="1bhk3.jpg" alt="1BHK view 3" onerror="this.style.display='none'"/>
-              <img class="previewable" src="1bhk4.jpg" alt="1BHK view 4" onerror="this.style.display='none'"/>
             </div>
           </div>
         </article>
@@ -161,8 +157,7 @@
             <div class="price">₹5,000 / night</div>
             <p>Spacious family suite with two bedrooms, ample living space and refined finishes.</p>
             <div class="thumbs">
-              <img class="previewable" src="image2.jpg" alt="2BHK view 2" onerror="this.style.display='none'"/>
-              <img class="previewable" src="image3.jpg" alt="2BHK view 3" onerror="this.style.display='none'"/>
+              <img class="previewable" src="1bhk1.jpg" alt="2BHK view 2 (also 1BHK image)" onerror="this.style.display='none'"/>
             </div>
           </div>
         </article>
@@ -179,6 +174,7 @@
             <li>Complimentary premium toiletries</li>
             <li>Fridge available in rooms</li>
             <li>Washing machine available</li>
+            <li>24hrs cab facilities</li>
             <li>Secure parking</li>
             <li>24/7 guest support</li>
             <li>Flexible check-in/out</li>
@@ -260,7 +256,6 @@
     }
 
     document.addEventListener('DOMContentLoaded', ()=>{
-      // navigation
       document.querySelectorAll('nav a').forEach(a=>{
         a.addEventListener('click', e=>{
           e.preventDefault();
@@ -271,7 +266,7 @@
       const id = (location.hash || '#welcome').replace('#','');
       showSection(id);
 
-      // thumbnail swap for each room (click swaps main image)
+      // thumbnail swap per room
       document.querySelectorAll('.room').forEach(room=>{
         const mainImg = room.querySelector('img.previewable');
         const thumbs = room.querySelectorAll('.thumbs img.previewable');
@@ -286,12 +281,9 @@
         }
       });
 
-      // preview behavior: open image in new tab when clicked (gallery & thumbs)
+      // open clicked image in new tab
       document.querySelectorAll('img.previewable').forEach(img=>{
-        img.addEventListener('click', (e)=>{
-          if (!img.src) return;
-          window.open(img.src, '_blank', 'noopener');
-        });
+        img.addEventListener('click', ()=>{ if(img.src) window.open(img.src,'_blank','noopener'); });
       });
     });
 
@@ -323,3 +315,4 @@
   </script>
 </body>
 </html>
+
